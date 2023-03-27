@@ -49,6 +49,9 @@
       <x:String>System.Net</x:String>
       <x:String>UiPath.Shared.Activities.Business</x:String>
       <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business.Filter</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -113,6 +116,8 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="696,817.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -121,7 +126,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <StateMachine InitialState="{x:Reference __ReferenceID2}" DisplayName="State Machine" sap:VirtualizedContainerService.HintSize="634,706.6666666666666" sap2010:WorkflowViewState.IdRef="StateMachine_2">
+    <StateMachine InitialState="{x:Reference __ReferenceID2}" DisplayName="State Machine" sap:VirtualizedContainerService.HintSize="634,706.6666666666667" sap2010:WorkflowViewState.IdRef="StateMachine_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -134,9 +139,9 @@
       </sap:WorkflowViewStateService.ViewState>
       <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="- Read Config File&#xA;- Open SAP LogOn&#xA;- Login to SAP" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="149.33333333333334,126" sap2010:WorkflowViewState.IdRef="State_4">
         <State.Entry>
-          <TryCatch DisplayName="Try Catch Init" sap:VirtualizedContainerService.HintSize="536,435.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+          <TryCatch DisplayName="Try Catch Init" sap:VirtualizedContainerService.HintSize="534.6666666666666,1030" sap2010:WorkflowViewState.IdRef="TryCatch_5">
             <TryCatch.Try>
-              <Sequence DisplayName="Try Init" sap:VirtualizedContainerService.HintSize="496,793.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Try Init" sap:VirtualizedContainerService.HintSize="496,794" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -148,7 +153,7 @@
                     <InArgument x:TypeArguments="x:String" x:Key="in_ProcessName">saplogon</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <Assign DisplayName="Initialize SystemException" sap:VirtualizedContainerService.HintSize="434,84" sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign DisplayName="Initialize SystemException" sap:VirtualizedContainerService.HintSize="434,84.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_15">
                   <Assign.To>
                     <OutArgument x:TypeArguments="s:Exception">[SystemException]</OutArgument>
                   </Assign.To>
@@ -178,10 +183,10 @@
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="502,264.6666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="500.6666666666667,21.333333333333332" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -189,14 +194,14 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Catch Initialization" sap:VirtualizedContainerService.HintSize="496,194.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Catch Initialization" sap:VirtualizedContainerService.HintSize="496,194" sap2010:WorkflowViewState.IdRef="Sequence_15">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,84" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,84.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_16">
                       <Assign.To>
                         <OutArgument x:TypeArguments="s:Exception">[SystemException]</OutArgument>
                       </Assign.To>
