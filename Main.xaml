@@ -137,7 +137,7 @@
           <av:PointCollection x:Key="ConnectorLocation">294,77.16666666666667 294,107.16666666666667 292.5333333333333,107.16666666666667 292.5333333333333,147</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="- Read Config File&#xA;- Open SAP LogOn&#xA;- Login to SAP" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="581.3333333333334,1499.3333333333333" sap2010:WorkflowViewState.IdRef="State_4">
+      <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="- Read Config File&#xA;- Open SAP LogOn&#xA;- Login to SAP" DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="149.33333333333334,128" sap2010:WorkflowViewState.IdRef="State_4">
         <State.Entry>
           <TryCatch DisplayName="Try Catch Init" sap:VirtualizedContainerService.HintSize="534.6666666666666,1037.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_5">
             <TryCatch.Try>
@@ -211,14 +211,14 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Catch Initialization" sap:VirtualizedContainerService.HintSize="496,194" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Catch Initialization" sap:VirtualizedContainerService.HintSize="496,193.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_15">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,84.66666666666667" sap2010:WorkflowViewState.IdRef="Assign_16">
+                    <Assign DisplayName="Assign SystemException" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_16">
                       <Assign.To>
                         <OutArgument x:TypeArguments="s:Exception">[SystemException]</OutArgument>
                       </Assign.To>
@@ -508,7 +508,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <Transition.Condition>[SystemException is Nothing]</Transition.Condition>
             <Transition.To>
-              <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="- Navigate To Transaction Code&#xA;- Execute Business Process (You can change your code here)" DisplayName="Main Process" sap:VirtualizedContainerService.HintSize="174,245.33333333333334" sap2010:WorkflowViewState.IdRef="State_6">
+              <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="- Navigate To Transaction Code&#xA;- Execute Business Process (You can change your code here)" DisplayName="Main Process" sap:VirtualizedContainerService.HintSize="631.3333333333334,1849.3333333333333" sap2010:WorkflowViewState.IdRef="State_6">
                 <State.Entry>
                   <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="584.6666666666666,1404" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                     <TryCatch.Try>
@@ -530,7 +530,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:Comment>
-                        <ui:ForEachFileX sap2010:Annotation.AnnotationText="- Execute Process for each file in the Original Folder" DisplayName="For Each File in Folder" Folder="[Config(&quot;Original Folder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,790.6666666666666" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+                        <ui:ForEachFileX sap2010:Annotation.AnnotationText="- Execute Process for each file in the Original Folder" DisplayName="For Each File in Folder" Folder="[Config(&quot;Original Folder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="484,790.6666666666666" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="LastUpdatedDateOldFirst" SkipFolderWithoutPermission="False">
                           <ui:ForEachFileX.Body>
                             <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
                               <ActivityAction.Argument1>
@@ -548,12 +548,24 @@
                                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,96" sap2010:WorkflowViewState.IdRef="LogMessage_39" Level="Info" Message="[&quot;Processing file &quot;+CurrentFile.Name]" />
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process_SOReject.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="388,115.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="SAP\Process_SOReject.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <OutArgument x:TypeArguments="x:String" x:Key="ProcessReport">[CurrentReport]</OutArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="OriginalFilepath">[CurrentFile.FullName]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="CompletedFolder">[Config("Completed Folder").ToString]</InArgument>
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="InOut_DataError">[DataError]</InOutArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="In_ScreenShotFolder">[Config("Error Screenshot Folder").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="In_TransactionCode">[Config("SAPTransactionCode").ToString]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_TransactionCode">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;SAPTransactionCode&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_ScreenShotFolder">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Error Screenshot Folder&quot;).ToString" />
+                                    </InArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DataError">
+                                      <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DataError" />
+                                    </InOutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_CompletedFolder">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;Completed Folder&quot;).ToString" />
+                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_OriginalFilepath">
+                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentFile.FullName" />
+                                    </InArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="in_ProcessReport">
+                                      <VisualBasicReference x:TypeArguments="x:String" ExpressionText="CurrentReport" />
+                                    </OutArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,96" sap2010:WorkflowViewState.IdRef="LogMessage_40" Level="Info" Message="[&quot;Done processing &quot;+CurrentFile.Name]" />
