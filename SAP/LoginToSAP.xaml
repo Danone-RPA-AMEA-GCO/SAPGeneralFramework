@@ -1,17 +1,18 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="LoginToSAP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="LogonPath" Type="InArgument(x:String)" />
-    <x:Property Name="ConnectionName" Type="InArgument(x:String)" />
-    <x:Property Name="Username" Type="InArgument(x:String)" />
-    <x:Property Name="Password" Type="InArgument(x:String)" />
-    <x:Property Name="Client" Type="InArgument(x:String)" />
-    <x:Property Name="Language" Type="InArgument(x:String)" />
-    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Client" Type="InArgument(x:String)" />
+    <x:Property Name="in_Password" Type="InArgument(x:String)" />
+    <x:Property Name="in_Username" Type="InArgument(x:String)" />
+    <x:Property Name="in_ConnectionName" Type="InArgument(x:String)" />
+    <x:Property Name="in_LogonPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_Language" Type="InArgument(x:String)" />
+    <x:Property Name="in_LogonRetries" Type="InArgument(x:String)" />
+    <x:Property Name="in_LogonRetriesInterval" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>600,1140</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>871.3333333333334,1140</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>LoginToSAP_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -82,6 +83,11 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="LoginToSAP" sap:VirtualizedContainerService.HintSize="450,1075.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -90,8 +96,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Now Opening &quot;+LogonPath+&quot; with connection &quot; + ConnectionName]" />
-    <ucas:Logon Window="{x:Null}" ConnectionName="[ConnectionName]" DelayBetweenRetries="[Convert.ToInt32(in_Config(&quot;SAPLogOnRetryInterval&quot;).ToString)]" DisplayName="SAP Logon" sap:VirtualizedContainerService.HintSize="388,141.33333333333334" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="[Convert.ToInt32(in_Config(&quot;SAPLogOnRetry&quot;).ToString)]" SAPLogonPath="[LogonPath]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Now Opening &quot;+in_LogonPath+&quot; with connection &quot; + in_ConnectionName]" />
+    <ucas:Logon Window="{x:Null}" ConnectionName="[in_ConnectionName]" DelayBetweenRetries="[Convert.ToInt32(in_LogonRetriesInterval)]" DisplayName="SAP Logon" sap:VirtualizedContainerService.HintSize="388,141.33333333333334" sap2010:WorkflowViewState.IdRef="Logon_1" Retries="[Convert.ToInt32(in_LogonRetries)]" SAPLogonPath="[in_LogonPath]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -100,7 +106,7 @@
       </sap:WorkflowViewStateService.ViewState>
     </ucas:Logon>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,96" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Robot trying to login to SAP...&quot;]" />
-    <ucas:Login SecurePassword="{x:Null}" Window="{x:Null}" Client="[Client]" DisplayName="SAP Login 'saplogon.exe  SAP'" sap:VirtualizedContainerService.HintSize="388,375.3333333333333" sap2010:WorkflowViewState.IdRef="Login_1" IsSecure="False" Language="[Language]" MultiLogonOptionToChoose="Multiple" Password="[Password]" Timeout="5000" Username="[Username]">
+    <ucas:Login SecurePassword="{x:Null}" Window="{x:Null}" Client="[in_Client]" DisplayName="SAP Login 'saplogon.exe  SAP'" sap:VirtualizedContainerService.HintSize="388,375.3333333333333" sap2010:WorkflowViewState.IdRef="Login_1" IsSecure="False" Language="[in_Language]" MultiLogonOptionToChoose="Multiple" Password="[in_Password]" Timeout="5000" Username="[in_Username]">
       <ucas:Login.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c862cb24-cb86-4553-8bc4-4e0e6d1cd6bb" InformativeScreenshot="c95a9ba26c2b4264fa197b9e4a13f3fd" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='SAP' /&gt;">
           <ui:Target.TimeoutMS>
