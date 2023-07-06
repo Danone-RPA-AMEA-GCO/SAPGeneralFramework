@@ -3,11 +3,11 @@
   "description": "This framework is used for project that use SAP in general",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Excel.Activities": "[2.18.0-preview]",
-    "UiPath.Mail.Activities": "[1.18.2]",
-    "UiPath.System.Activities": "[23.2.0-preview]",
-    "UiPath.Testing.Activities": "[23.2.0-preview]",
-    "UiPath.UIAutomation.Activities": "[23.2.0-preview]"
+    "UiPath.Excel.Activities": "[2.20.1]",
+    "UiPath.Mail.Activities": "[1.15.2]",
+    "UiPath.System.Activities": "[22.10.5]",
+    "UiPath.Testing.Activities": "[22.10.3]",
+    "UiPath.UIAutomation.Activities": "[22.4.8]"
   },
   "webServices": [],
   "entitiesStores": [],
